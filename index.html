@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muxtor ali Translate</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#10182d;color:white;padding:20px}
+header{text-align:center;padding:25px 5px}
+h1{color:#8da8ff}
+.card{background:#202d49;padding:18px;border-radius:16px;margin:15px 0}
+select,textarea,button{width:100%;padding:14px;margin:8px 0;border:0;border-radius:10px;font-size:16px}
+textarea{height:140px;resize:vertical}
+select{background:#fff;color:#111}
+button{background:#657ff5;color:white;font-weight:bold}
+button:active{opacity:.8}
+#output{background:#fff;color:#111;min-height:100px;padding:15px;border-radius:10px;white-space:pre-wrap}
+.small{color:#b9c6e8;text-align:center;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<h1>🌐 Muxtor ali Translate</h1>
+<p>Uzbek • Русский • English</p>
+</header>
+
+<div class="card">
+<h3>Matn tarjimasi</h3>
+<select id="from">
+<option value="uz">O‘zbek tili</option>
+<option value="ru">Русский</option>
+<option value="en">English</option>
+</select>
+<select id="to">
+<option value="ru">Русский</option>
+<option value="uz">O‘zbek tili</option>
+<option value="en">English</option>
+</select>
+<textarea id="input" placeholder="Tarjima qilinadigan matnni yozing..."></textarea>
+<button onclick="translateText()">Tarjima qilish</button>
+<button onclick="listen()">🎤 Ovoz bilan kiritish</button>
+</div>
+
+<div class="card">
+<h3>Tarjima natijasi</h3>
+<div id="output">Tarjima shu yerda ko‘rinadi.</div>
+<button onclick="speak()">🔊 Ovoz chiqarish</button>
+<button onclick="copyText()">📋 Nusxa olish</button>
+</div>
+
+<div class="card">
+<h3>🗣 Jonli suhbat</h3>
+<p>Ikki kishi turli tillarda suhbatlashishi uchun xona funksiyasini keyingi bosqichda ulaymiz.</p>
+<button onclick="alert('Jonli suhbat funksiyasi keyingi bosqichda ulanadi.')">Suhbatni boshlash</button>
+</div>
+
+<p class="small">Muxtor ali Translate © 2026</p>
+
+<script>
+async function translateText(){
+const input=document.getElementById('input').value.trim();
+if(!input){alert('Avval matn yozing');return;}
+document.getElementById('output').textContent=
+'Tarjima serveri hali ulanmagan. Keyingi bosqichda ulaymiz.';
+}
+function listen(){
+const Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!Speech){alert('Brauzeringiz ovozli kiritishni qo‘llamasligi mumkin.');return;}
+const r=new Speech();
+r.lang={uz:'uz-UZ',ru:'ru-RU',en:'en-US'}[document.getElementById('from').value];
+r.onresult=e=>document.getElementById('input').value=e.results[0][0].transcript;
+r.start();
+}
+function speak(){
+const text=document.getElementById('output').textContent;
+if(!text){return;}
+const u=new SpeechSynthesisUtterance(text);
+u.lang={uz:'uz-UZ',ru:'ru-RU',en:'en-US'}[document.getElementById('to').value];
+speechSynthesis.speak(u);
+}
+function copyText(){
+navigator.clipboard.writeText(document.getElementById('output').textContent)
+.then(()=>alert('Nusxa olindi'))
+.catch(()=>alert('Nusxa olish uchun brauzer ruxsati kerak'));
+}
+</script>
+</body>
+</html>
