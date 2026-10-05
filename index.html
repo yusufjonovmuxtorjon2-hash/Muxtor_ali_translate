@@ -2,568 +2,957 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Muxtor ali Translate — O‘zbek, Rus va Ingliz tillari uchun bepul matnli va ovozli tarjimon">
+<meta name="theme-color" content="#2868df">
 <title>Muxtor ali Translate</title>
+
 <style>
-:root {
-  --blue:#2563eb;
-  --dark:#17315e;
-  --light:#eff6ff;
-  --border:#dce7f6;
-  --muted:#64748b;
-}
 *{box-sizing:border-box}
+
 body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f8ff;
-  color:#172b4d;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f3f7fd;
+color:#24364f
 }
-button,textarea,select{font:inherit}
-button{cursor:pointer}
-header{
-  background:white;
-  border-bottom:1px solid var(--border);
-  padding:15px 5%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
+
+.container{
+width:min(1000px,100%);
+margin:auto;
+padding:28px 16px 60px
 }
-.brand{display:flex;align-items:center;gap:12px}
-.logo{
-  width:46px;height:46px;border-radius:14px;
-  background:linear-gradient(135deg,#2563eb,#60a5fa);
-  color:white;display:grid;place-items:center;
-  font-size:23px;font-weight:bold;
+
+header{text-align:center;margin-bottom:24px}
+
+h1{
+margin:0;
+font-size:clamp(30px,7vw,46px);
+line-height:1.15;
+color:#17345f
 }
-.brand h2{margin:0;font-size:19px}
-.brand small{color:var(--blue);font-weight:bold;letter-spacing:1px}
-.online{color:#15803d;font-size:12px;font-weight:bold}
-main{max-width:950px;margin:35px auto;padding:0 16px}
-.hero{text-align:center;margin-bottom:28px}
-.hero h1{font-size:clamp(27px,5vw,43px);margin:0 0 10px}
-.hero h1 span{color:var(--blue)}
-.hero p{color:var(--muted);line-height:1.6}
-.tabs{
-  display:flex;gap:9px;justify-content:center;
-  flex-wrap:wrap;margin:25px 0;
+
+h1 span{color:#2868df}
+
+header p{
+font-size:18px;
+line-height:1.5;
+color:#687990
 }
-.tab{
-  border:1px solid var(--border);background:white;
-  color:#385276;border-radius:12px;padding:12px 17px;
-  font-weight:bold;
+
+.modes{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:22px
 }
-.tab.active{background:var(--blue);color:white;border-color:var(--blue)}
-.panel{
-  background:white;border:1px solid var(--border);
-  border-radius:20px;padding:20px;
-  box-shadow:0 8px 30px rgba(35,75,130,.07);
+
+.mode{
+border:1px solid #d9e3ef;
+background:#fff;
+color:#405574;
+padding:14px 19px;
+border-radius:16px;
+font-size:16px;
+font-weight:700;
+cursor:pointer
 }
-.hidden{display:none!important}
+
+.mode.active{
+background:#2868df;
+color:#fff;
+border-color:#2868df
+}
+
+.section{display:none}
+.section.active{display:block}
+
+.card{
+background:#fff;
+border:1px solid #dce5f0;
+border-radius:25px;
+padding:20px;
+box-shadow:0 8px 30px rgba(40,80,140,.08)
+}
+
 .languages{
-  display:grid;grid-template-columns:1fr 48px 1fr;
-  gap:10px;align-items:center;margin-bottom:18px;
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:18px
 }
+
 select{
-  width:100%;padding:13px;border:1px solid var(--border);
-  border-radius:12px;background:#f8fbff;color:var(--dark);
-  font-weight:bold;outline:none;
+flex:1;
+min-width:0;
+padding:16px 12px;
+border:1px solid #d6e1ee;
+border-radius:15px;
+background:#fff;
+font-size:16px;
+color:#24364f
 }
+
 .swap{
-  border:0;background:#eaf2ff;color:var(--blue);
-  border-radius:50%;width:42px;height:42px;font-size:21px;
+width:52px;
+height:52px;
+border:0;
+border-radius:50%;
+background:#edf4ff;
+color:#2868df;
+font-size:24px;
+cursor:pointer;
+flex:none
 }
-.editor{
-  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+
+.box{
+border:1px solid #dce5f0;
+border-radius:20px;
+padding:18px;
+background:#fbfdff;
+margin-bottom:15px
 }
-.area{
-  border:1px solid var(--border);border-radius:15px;
-  padding:14px;background:#fbfdff;min-width:0;
+
+.label{
+font-size:14px;
+font-weight:800;
+color:#59718e;
+margin-bottom:10px
 }
-.area-title{
-  font-size:12px;font-weight:bold;color:#52709c;
-  margin-bottom:12px;letter-spacing:.5px;
-}
+
 textarea{
-  width:100%;min-height:155px;resize:vertical;
-  border:0;outline:none;background:transparent;
-  color:#172b4d;font-size:16px;line-height:1.6;
+width:100%;
+height:190px;
+resize:vertical;
+border:0;
+outline:0;
+background:transparent;
+font:21px Arial,sans-serif;
+color:#24364f
 }
-.output{
-  min-height:155px;white-space:pre-wrap;
-  line-height:1.6;overflow-wrap:anywhere;
+
+textarea::placeholder{color:#9aa8b8}
+
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px
 }
-.area-bottom{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:8px;margin-top:10px;
-  color:var(--muted);font-size:12px;
+
+.counter{
+font-size:14px;
+color:#71829a
 }
-.small-btn{
-  border:0;background:#eaf2ff;color:var(--blue);
-  border-radius:9px;padding:8px 10px;font-size:13px;
-}
+
 .actions{
-  display:flex;gap:10px;flex-wrap:wrap;margin-top:17px;
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+justify-content:flex-end
 }
-.primary{
-  flex:1;min-width:190px;border:0;border-radius:13px;
-  background:linear-gradient(120deg,#2563eb,#397cf5);
-  color:white;padding:16px;font-weight:bold;
-  box-shadow:0 5px 15px #2563eb30;
+
+.small{
+border:0;
+background:#edf4ff;
+color:#2868df;
+padding:11px 14px;
+border-radius:12px;
+font-weight:700;
+cursor:pointer
 }
-.secondary{
-  border:1px solid var(--border);background:white;
-  color:#31517c;border-radius:12px;padding:13px;
+
+.result{
+min-height:190px;
+font-size:21px;
+line-height:1.55;
+white-space:pre-wrap;
+word-break:break-word
 }
-.status{font-size:13px;color:var(--muted);margin-top:13px;min-height:20px}
-.info{
-  background:#eff6ff;border:1px solid #dbeafe;
-  border-radius:14px;padding:15px;margin-top:18px;
-  color:#34547e;font-size:13px;line-height:1.6;
+
+.translate{
+width:100%;
+border:0;
+border-radius:16px;
+padding:17px;
+background:#2868df;
+color:#fff;
+font-size:19px;
+font-weight:800;
+cursor:pointer
 }
-.voice-box,.conversation-box{
-  text-align:center;padding:24px 10px;
+
+.translate:disabled{
+opacity:.6;
+cursor:wait
 }
+
+.status{
+min-height:25px;
+text-align:center;
+margin-top:10px;
+font-size:14px;
+color:#60738c
+}
+
+.voice{
+text-align:center;
+padding:35px 15px
+}
+
 .mic{
-  width:85px;height:85px;border-radius:50%;
-  border:0;background:#2563eb;color:white;
-  font-size:32px;margin:15px auto;
-  box-shadow:0 8px 25px #2563eb40;
+width:100px;
+height:100px;
+border:0;
+border-radius:50%;
+background:#2868df;
+color:white;
+font-size:40px;
+cursor:pointer
 }
-.mic.listening{background:#dc2626;animation:pulse 1.2s infinite}@keyframes pulse{50%{box-shadow:0 0 0 16px #dc262622}}
-.voice-result,.conversation-result{
-  text-align:left;background:#f7faff;border:1px solid var(--border);
-  padding:15px;border-radius:13px;min-height:85px;
-  white-space:pre-wrap;line-height:1.6;margin-top:16px;
+
+.mic.active{background:#e33b3b}
+
+.voice-text{
+margin-top:20px;
+min-height:60px;
+font-size:20px;
+line-height:1.5
 }
-.person{
-  border:1px solid var(--border);border-radius:15px;
-  padding:15px;margin:15px 0;
-}
-.person h3{margin:0 0 12px}
-.person button{margin-top:10px}
+
 .history-item{
-  padding:12px;border-bottom:1px solid var(--border);
-  font-size:14px;line-height:1.5;
+border:1px solid #dce5f0;
+border-radius:15px;
+padding:14px;
+margin:10px 0;
+background:#fbfdff
 }
-footer{text-align:center;color:#718096;font-size:13px;padding:30px 10px}
-@media(max-width:650px){
-  main{margin:22px auto}
-  .panel{padding:14px}
-  .editor{grid-template-columns:1fr}
-  textarea,.output{min-height:115px}
-  .hero h1{font-size:29px}
-  .tab{padding:11px 12px;font-size:13px}
-  header{padding:12px 4%}
+
+.history-item .original{
+font-weight:700;
+color:#2868df
+}
+
+.empty{text-align:center;color:#71829a;padding:25px}
+
+.footer{
+text-align:center;
+margin-top:28px;
+font-size:13px;
+color:#7d8da2
+}
+
+@media(max-width:600px){
+.container{padding:20px 10px 45px}
+.card{padding:13px;border-radius:20px}
+.languages{gap:6px}
+select{font-size:14px;padding:14px 7px}
+.swap{width:45px;height:45px}
+.row{align-items:flex-start;flex-direction:column}
+.actions{justify-content:flex-start}
+textarea,.result{font-size:19px}
 }
 </style>
 </head>
+
 <body>
 
+<div class="container">
+
 <header>
-  <div class="brand">
-    <div class="logo">✦</div>
-    <div>
-      <h2>Muxtor ali</h2>
-      <small>TRANSLATE</small>
-    </div>
-  </div>
-  <div class="online">● ONLINE</div>
-</header>
+<h1>So‘zlar <span>chegarasiz.</span><br>Muloqot erkin.</h1><div class="modes">
+<button class="mode active" onclick="openTab('text',this)">✍️ Matn tarjimasi</button>
+<button class="mode" onclick="openTab('voice',this)">🎙️ Ovozli tarjima</button>
+<button class="mode" onclick="openTab('chat',this)">🗣️ Jonli suhbat</button>
+<button class="mode" onclick="openTab('history',this)">📚 Tarix</button>
+</div>
 
-<main>
-  <section class="hero">
-    <h1>So‘zlar chegarasiz.<br><span>Muloqot erkin.</span></h1>
-    <p>O‘zbek, rus va ingliz tillari o‘rtasida tezkor matnli va ovozli tarjima.</p>
-  </section>
 
-  <nav class="tabs">
-    <button class="tab active" onclick="openTab('text',this)">✍️ Matn tarjimasi</button>
-    <button class="tab" onclick="openTab('voice',this)">🎙 Ovozli tarjima</button>
-    <button class="tab" onclick="openTab('live',this)">🗣 Jonli suhbat</button>
-    <button class="tab" onclick="openTab('history',this)">📚 Tarix</button>
-  </nav>
+<!-- MATN -->
 
-  <section id="text" class="panel">
-    <div class="languages">
-      <select id="from">
-        <option value="uz">🇺🇿 O‘zbekcha</option>
-        <option value="ru">🇷🇺 Русский</option>
-        <option value="en">🇬🇧 English</option>
-      </select>
-      <button class="swap" onclick="swap()" title="Tillarni almashtirish">⇄</button>
-      <select id="to">
-        <option value="ru">🇷🇺 Русский</option>
-        <option value="uz">🇺🇿 O‘zbekcha</option>
-        <option value="en">🇬🇧 English</option>
-      </select>
-    </div>
+<div id="text" class="section active">
 
-    <div class="editor">
-      <div class="area">
-        <div class="area-title">ASL MATN</div>
-        <textarea id="input" maxlength="5000" placeholder="Tarjima qilmoqchi bo‘lgan matningizni yozing..." oninput="countText()"></textarea>
-        <div class="area-bottom">
-          <span id="count">0 / 5000</span>
-          <button class="small-btn" onclick="clearAll()">Tozalash ✕</button>
-        </div>
-      </div>
-      <div class="area">
-        <div class="area-title">TARJIMA NATIJASI</div>
-        <div id="output" class="output">Tarjima natijasi shu yerda ko‘rinadi...</div>
-        <div class="area-bottom">
-          <button class="small-btn" onclick="copyText()">📋 Nusxalash</button>
-          <button class="small-btn" onclick="speakOutput()">🔊 Eshitish</button>
-        </div>
-      </div>
-    </div>
+<div class="card">
 
-    <div class="actions">
-      <button class="primary" id="translateBtn" onclick="translateText()">✦ TARJIMA QILISH</button>
-      <button class="secondary" onclick="clearAll()">Tozalash</button>
-    </div>
-    <div id="status" class="status" role="status" aria-live="polite"></div>
-  </section>
+<div class="languages">
 
-  <section id="voice" class="panel hidden">
-    <div class="voice-box">
-      <h2>🎙 Ovozli tarjima</h2>
-      <p>Tilni tanlang, mikrofonni bosing va gapiring.</p>
-      <select id="voiceLang" style="max-width:300px">
-        <option value="uz">🇺🇿 O‘zbekcha</option>
-        <option value="ru">🇷🇺 Русский</option>
-        <option value="en">🇬🇧 English</option>
-      </select>
-      <br>
-      <button class="mic" id="micBtn" onclick="listen()">🎤</button>
-      <p id="voiceStatus" class="status">Gapirishni boshlash uchun mikrofonni bosing.</p>
-      <div class="voice-result" id="voiceText">Sizning ovozingiz matn ko‘rinishida shu yerda chiqadi.</div>
-      <button class="primary" style="margin-top:15px" onclick="sendVoice()">Matn tarjimasiga o‘tkazish</button>
-    </div>
-  </section><section id="live" class="panel hidden">
-    <div class="conversation-box">
-      <h2>🗣 Ikki kishilik suhbat</h2>
-      <p>Har bir kishi o‘z tilida gapiradi. Tarjima ikkinchi kishiga chiqariladi.</p>
+<select id="from">
+<option value="uz">🇺🇿 O‘zbekcha</option>
+<option value="ru">🇷🇺 Русский</option>
+<option value="en">🇬🇧 English</option>
+</select>
 
-      <div class="person">
-        <h3>👤 Birinchi kishi</h3>
-        <select id="lang1">
-          <option value="uz">🇺🇿 O‘zbekcha</option>
-          <option value="ru">🇷🇺 Русский</option>
-          <option value="en">🇬🇧 English</option>
-        </select>
-        <button class="primary" onclick="conversation(1)">🎤 GAPIRISH</button>
-      </div>
+<button class="swap" onclick="swapLangs()">⇄</button>
 
-      <div class="person">
-        <h3>👤 Ikkinchi kishi</h3>
-        <select id="lang2">
-          <option value="ru">🇷🇺 Русский</option>
-          <option value="uz">🇺🇿 O‘zbekcha</option>
-          <option value="en">🇬🇧 English</option>
-        </select>
-        <button class="primary" onclick="conversation(2)">🎤 GAPIRISH</button>
-      </div>
+<select id="to">
+<option value="ru">🇷🇺 Русский</option>
+<option value="uz">🇺🇿 O‘zbekcha</option>
+<option value="en">🇬🇧 English</option>
+</select>
 
-      <div id="conversationResult" class="conversation-result">Suhbatni boshlash uchun mikrofonni bosing.</div>
-    </div>
-  </section>
+</div>
 
-  <section id="history" class="panel hidden">
-    <h2>📚 Tarjimalar tarixi</h2>
-    <p class="status">Oxirgi tarjimalaringiz shu yerda saqlanadi.</p>
-    <div id="historyList"></div>
-    <button class="secondary" onclick="clearHistory()">Tarixni tozalash</button>
-  </section>
 
-  <div class="info">
-    ✦ <b>Muxtor ali Translate</b><br>
-    Uch til — bitta platforma. Matn va ovoz orqali tarjima qiling.
-  </div>
-</main>
+<div class="box">
 
-<footer>Muxtor ali Translate © 2026</footer>
+<div class="label">ASL MATN</div>
+
+<textarea
+id="input"
+maxlength="5000"
+placeholder="Tarjima qilinadigan matnni yozing..."
+></textarea>
+
+<div class="row">
+
+<div class="counter">
+<span id="count">0</span> / 5000
+</div>
+
+<div class="actions">
+<button class="small" onclick="clearInput()">Tozalash ✕</button>
+<button class="small" onclick="startRecognition()">🎙️ Gapirish</button>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="box">
+
+<div class="label">TARJIMA NATIJASI</div>
+
+<div id="result" class="result">
+Tarjima natijasi shu yerda ko‘rinadi...
+</div>
+
+<div class="row">
+
+<div></div>
+
+<div class="actions">
+<button class="small" onclick="copyResult()">📋 Nusxalash</button>
+<button class="small" onclick="speakResult()">🔊 Eshitish</button>
+</div>
+
+</div>
+
+</div>
+
+
+<button id="translateBtn" class="translate" onclick="translateNow()">
+TARJIMA QILISH
+</button>
+
+<div id="status" class="status"></div>
+
+</div>
+</div>
+
+
+<!-- OVOZ -->
+
+<div id="voice" class="section">
+
+<div class="card voice">
+
+<h2>🎙️ Ovozli tarjima</h2>
+
+<p>Tilni tanlang, mikrofonni bosing va gapiring.</p>
+
+<button id="mic" class="mic" onclick="startVoice()">🎙️</button>
+
+<div id="voiceText" class="voice-text">
+Mikrofonni bosib gapiring...
+</div>
+
+<div id="voiceResult" class="result"></div>
+
+</div>
+
+</div>
+
+
+<!-- SUHBAT -->
+
+<div id="chat" class="section">
+
+<div class="card voice">
+
+<h2>🗣️ Jonli suhbat</h2>
+
+<p>Gapiring — dastur matnni tarjima qilib beradi.</p>
+
+<button class="translate" onclick="conversation()">🎙️ SUHBATNI BOSHLASH</button>
+
+<div id="chatText" class="voice-text"></div>
+<div id="chatResult" class="result"></div>
+
+</div>
+
+</div>
+
+
+<!-- TARIX -->
+
+<div id="history" class="section">
+
+<div class="card">
+
+<h2>📚 Tarjima tarixi</h2>
+
+<div id="historyList"></div>
+
+<button class="small" onclick="deleteHistory()">
+Tarixni tozalash
+</button>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+Muxtor ali Translate • 🇺🇿 🇷🇺 🇬🇧
+</div>
+
+</div>
+
 
 <script>
-const API = 'https://api.mymemory.translated.net/get';
 
-const languageNames = {
-  uz:'O‘zbekcha',
-  ru:'Русский',
-  en:'English'
-};
+const input=document.getElementById("input");
+const count=document.getElementById("count");
+
+input.addEventListener("input",()=>{
+count.textContent=input.value.length;
+});
+
 
 function openTab(id,btn){
-  document.querySelectorAll('main > section.panel').forEach(x=>x.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-  btn.classList.add('active');
-  if(id==='history') showHistory();
+
+document.querySelectorAll(".section").forEach(x=>{
+x.classList.remove("active");
+});
+
+document.getElementById(id).classList.add("active");
+
+document.querySelectorAll(".mode").forEach(x=>{
+x.classList.remove("active");
+});
+
+btn.classList.add("active");
+
+if(id==="history") loadHistory();
+
 }
 
-function swap(){
-  const a=document.getElementById('from');
-  const b=document.getElementById('to');
-  const old=a.value;
-  a.value=b.value;
-  b.value=old;
+
+function swapLangs(){
+
+const a=document.getElementById("from");
+const b=document.getElementById("to");
+
+const old=a.value;
+a.value=b.value;
+b.value=old;
+
 }
 
-function countText(){
-  const n=document.getElementById('input').value.length;
-  document.getElementById('count').textContent=n+' / 5000';
+
+function clearInput(){
+
+input.value="";
+count.textContent="0";
+
+document.getElementById("result").textContent=
+"Tarjima natijasi shu yerda ko‘rinadi...";
+
+document.getElementById("status").textContent="";
+
 }
 
-function clearAll(){
-  document.getElementById('input').value='';
-  document.getElementById('output').textContent='Tarjima natijasi shu yerda ko‘rinadi...';
-  document.getElementById('status').textContent='';
-  countText();
+
+/* =========================
+   ASOSIY TARJIMA
+========================= */
+
+async function translateNow(){
+
+const text=input.value.trim();
+
+const from=document.getElementById("from").value;
+const to=document.getElementById("to").value;
+
+const result=document.getElementById("result");
+const status=document.getElementById("status");
+const btn=document.getElementById("translateBtn");
+
+if(!text){
+
+result.textContent="Avval matn yozing.";
+return;
+
+}if(from===to){
+
+result.textContent=text;
+return;
+
 }
 
-async function getTranslation(text,from,to){
-  const url=new URL(API);
-  url.searchParams.set('q',text);
-  url.searchParams.set('langpair',from+'|'+to);
+btn.disabled=true;
+btn.textContent="⏳ TARJIMA QILINMOQDA...";
+status.textContent="Tarjima serveriga ulanmoqda...";
 
-  const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),20000);
+try{
 
-  try{
-    const response=await fetch(url.toString(),{
-      method:'GET',
-      signal:controller.signal
-    });
+const answer=await translateText(text,from,to);
 
-    if(!response.ok) throw Error('Tarjima serveri javob bermadi ('+response.status+').');
+result.textContent=answer;
 
-    const data=await response.json();
+status.textContent="✅ Tarjima tayyor.";
 
-    if(data.responseStatus && Number(data.responseStatus)!==200){
-      throw Error(data.responseDetails || 'Tarjima xizmati xatolik qaytardi.');
-    }
+saveHistory(text,answer,from,to);
 
-    const result=data.responseData?.translatedText;
-    if(!result) throw Error('Tarjima natijasi topilmadi.');
+}catch(error){
 
-    return decodeHtml(result);
-  }finally{
-    clearTimeout(timeout);
-  }
+console.error(error);
+
+result.textContent=
+"Tarjima serveriga ulanib bo‘lmadi.";
+
+status.textContent=
+"❌ Internet yoki tarjima serverida muammo.";
+
 }
 
-function decodeHtml(value){
-  const element=document.createElement('textarea');
-  element.innerHTML=value;
-  return element.value;
+btn.disabled=false;
+btn.textContent="TARJIMA QILISH";
+
 }
 
-async function translateText(){
-  const text=document.getElementById('input').value.trim();
-  const from=document.getElementById('from').value;
-  const to=document.getElementById('to').value;
-  const output=document.getElementById('output');
-  const status=document.getElementById('status');
-  const btn=document.getElementById('translateBtn');
 
-  if(!text){
-    status.textContent='Avval tarjima qilinadigan matnni yozing.';
-    return;
-  }
+/* =========================
+   MYMEMORY
+========================= */
 
-  if(from===to){
-    output.textContent=text;
-    status.textContent='Tanlangan tillar bir xil.';
-    return;
-  }output.textContent='Tarjima qilinmoqda...';
-  status.textContent='Iltimos, kuting...';
-  btn.disabled=true;
-  btn.textContent='TARJIMA QILINMOQDA...';
+async function translateText(text,from,to){
 
-  try{
-    const result=await getTranslation(text,from,to);
-    output.textContent=result;
-    status.textContent='✓ Tarjima tayyor!';
-    saveHistory(text,result,from,to);
-  }catch(error){
-    output.textContent='Tarjima amalga oshmadi.';
-    status.textContent=error.name==='AbortError'
-      ?'So‘rov vaqti tugadi. Qayta urinib ko‘ring.'
-      :'Xatolik: '+error.message+' Internetni tekshiring yoki keyinroq urinib ko‘ring.';
-  }finally{
-    btn.disabled=false;
-    btn.textContent='✦ TARJIMA QILISH';
-  }
+const url=
+"https://api.mymemory.translated.net/get?q="+
+encodeURIComponent(text)+
+"&langpair="+
+encodeURIComponent(from+"|"+to);
+
+const controller=new AbortController();
+
+const timer=setTimeout(()=>{
+controller.abort();
+},15000);
+
+try{
+
+const response=await fetch(url,{
+method:"GET",
+mode:"cors",
+signal:controller.signal,
+headers:{
+"Accept":"application/json"
+}
+});
+
+clearTimeout(timer);
+
+if(!response.ok){
+throw new Error("HTTP "+response.status);
 }
 
-function speak(text,lang){
-  if(!text || !('speechSynthesis' in window)){
-    alert('Ovoz chiqarish bu brauzerda qo‘llab-quvvatlanmaydi.');
-    return;
-  }
-  speechSynthesis.cancel();
-  const utterance=new SpeechSynthesisUtterance(text);
-  utterance.lang=lang==='uz'?'uz-UZ':lang==='ru'?'ru-RU':'en-US';
-  speechSynthesis.speak(utterance);
+const data=await response.json();
+
+if(
+!data.responseData ||
+!data.responseData.translatedText
+){
+throw new Error("Translation unavailable");
 }
 
-function speakOutput(){
-  const text=document.getElementById('output').textContent;
-  if(!text  text==='Tarjima natijasi shu yerda ko‘rinadi...'  text==='Tarjima qilinmoqda...'){
-    alert('Avval matnni tarjima qiling.');
-    return;
-  }
-  speak(text,document.getElementById('to').value);
+return data.responseData.translatedText;
+
+}catch(error){
+
+clearTimeout(timer);
+throw error;
+
 }
 
-async function copyText(){
-  const text=document.getElementById('output').textContent;
-  if(!text  text==='Tarjima natijasi shu yerda ko‘rinadi...'  text==='Tarjima qilinmoqda...'){
-    alert('Nusxalash uchun tarjima yo‘q.');
-    return;
-  }
-  try{
-    await navigator.clipboard.writeText(text);
-    alert('Nusxa olindi!');
-  }catch(e){
-    alert('Nusxalash uchun brauzer ruxsati kerak.');
-  }
 }
 
-function getRecognition(){
-  return window.SpeechRecognition || window.webkitSpeechRecognition;
+
+/* =========================
+   NUSXALASH
+========================= */
+
+async function copyResult(){
+
+const text=document.getElementById("result").textContent;
+
+if(
+!text ||
+text==="Tarjima natijasi shu yerda ko‘rinadi..."
+){
+return;
 }
 
-function listen(){
-  const Recognition=getRecognition();
-  if(!Recognition){
-    alert('Ovoz tanish bu brauzerda ishlamaydi. Google Chrome orqali oching.');
-    return;
-  }
+try{
 
-  const recognition=new Recognition();
-  const lang=document.getElementById('voiceLang').value;
-  const button=document.getElementById('micBtn');
-  const status=document.getElementById('voiceStatus');
+await navigator.clipboard.writeText(text);
 
-  recognition.lang=lang==='uz'?'uz-UZ':lang==='ru'?'ru-RU':'en-US';
-  recognition.interimResults=false;
-  recognition.maxAlternatives=1;
+document.getElementById("status").textContent=
+"✅ Nusxalandi.";
 
-  button.classList.add('listening');
-  status.textContent='🎙 Tinglanmoqda... Gapiring.';
+}catch(e){
 
-  recognition.onresult=e=>{
-    document.getElementById('voiceText').textContent=e.results[0][0].transcript;
-    status.textContent='Ovoz matnga aylantirildi.';
-  };
-  recognition.onerror=e=>{
-    status.textContent='Ovoz aniqlanmadi: '+e.error+'. Mikrofon ruxsatini tekshiring.';
-  };
-  recognition.onend=()=>{
-    button.classList.remove('listening');
-  };
+alert("Nusxalashga ruxsat berilmadi.");
 
-  try{recognition.start();}
-  catch(e){
-    button.classList.remove('listening');
-    status.textContent='Mikrofon band yoki qayta ishga tushirilmoqda.';
-  }
 }
 
-function sendVoice(){
-  const text=document.getElementById('voiceText').textContent;
-  if(!text || text==='Sizning ovozingiz matn ko‘rinishida shu yerda chiqadi.'){
-    alert('Avval mikrofon orqali gapiring.');
-    return;
-  }
-  document.getElementById('input').value=text;
-  document.getElementById('from').value=document.getElementById('voiceLang').value;
-  countText();
-  document.querySelectorAll('.tab')[0].click();
 }
 
-async function conversation(person){
-  const Recognition=getRecognition();
-  if(!Recognition){
-    alert('Ovoz tanish uchun Google Chrome orqali urinib ko‘ring.');
-    return;
-  }
 
-  const from=document.getElementById(person===1?'lang1':'lang2').value;
-  const to=document.getElementById(person===1?'lang2':'lang1').value;
-  const box=document.getElementById('conversationResult');
+/* =========================
+   OVOZLI O‘QISH
+========================= */
 
-  if(from===to){
-    box.textContent='Ikkala kishi uchun turli tillarni tanlang.';
-    return;
-  }
+function speakResult(){
 
-  const recognition=new Recognition();
-  recognition.lang=from==='uz'?'uz-UZ':from==='ru'?'ru-RU':'en-US';
-  recognition.interimResults=false;
-  recognition.maxAlternatives=1;
-  box.textContent='🎙 Gapiring, ovozingiz tinglanmoqda...';recognition.onresult=async e=>{
-    const original=e.results[0][0].transcript;
-    box.textContent='Asl gap ('+languageNames[from]+'): '+original+'\n\nTarjima qilinmoqda...';
-    try{
-      const translated=await getTranslation(original,from,to);
-      box.textContent='Asl gap ('+languageNames[from]+'): '+original+
-        '\n\nTarjima ('+languageNames[to]+'): '+translated;
-      speak(translated,to);
-      saveHistory(original,translated,from,to);
-    }catch(error){
-      box.textContent='Tarjima xatosi: '+error.message;
-    }
-  };
-  recognition.onerror=e=>{
-    box.textContent='Ovoz aniqlanmadi. Mikrofon ruxsatini tekshiring. ('+e.error+')';
-  };
-  try{recognition.start();}
-  catch(e){box.textContent='Mikrofon band. Birozdan keyin urinib ko‘ring.';}
+const text=document.getElementById("result").textContent;
+
+if(!text)return;
+
+if(!window.speechSynthesis){
+
+alert("Brauzeringiz ovozli o‘qishni qo‘llab-quvvatlamaydi.");
+return;
+
 }
+
+const lang=document.getElementById("to").value;
+
+const speech=new SpeechSynthesisUtterance(text);
+
+speech.lang=
+lang==="ru"?"ru-RU":
+lang==="en"?"en-US":
+"uz-UZ";
+
+speechSynthesis.cancel();
+speechSynthesis.speak(speech);
+
+}
+
+
+/* =========================
+   OVOZNI MATNGA
+========================= */
+
+function recognitionAPI(){
+
+return window.SpeechRecognition ||
+window.webkitSpeechRecognition ||
+null;
+
+}
+
+
+function startRecognition(){
+
+const Recognition=recognitionAPI();
+
+if(!Recognition){
+
+alert("Chrome brauzerida oching va mikrofon ruxsatini bering.");
+return;
+
+}
+
+const recognition=new Recognition();
+
+const from=document.getElementById("from").value;
+
+recognition.lang=
+from==="ru"?"ru-RU":
+from==="en"?"en-US":
+"uz-UZ";
+
+recognition.interimResults=false;
+recognition.continuous=false;
+
+recognition.onstart=()=>{
+document.getElementById("status").textContent=
+"🎙️ Gapiring...";
+};
+
+recognition.onresult=event=>{
+
+const text=event.results[0][0].transcript;
+
+input.value=text;
+count.textContent=text.length;
+
+translateNow();
+
+};
+
+recognition.onerror=()=>{
+document.getElementById("status").textContent=
+"❌ Mikrofon ishlamadi.";
+};
+
+recognition.start();
+
+}
+
+
+function startVoice(){
+
+const Recognition=recognitionAPI();
+
+if(!Recognition){
+
+alert("Chrome brauzerida oching.");
+return;
+
+}
+
+const recognition=new Recognition();
+
+const from=document.getElementById("from").value;
+
+recognition.lang=
+from==="ru"?"ru-RU":
+from==="en"?"en-US":
+"uz-UZ";
+
+recognition.interimResults=false;
+recognition.continuous=false;
+
+const mic=document.getElementById("mic");
+
+mic.classList.add("active");
+mic.textContent="⏹️";
+
+document.getElementById("voiceText").textContent=
+"🎙️ Gapiring...";
+
+recognition.onresult=async event=>{
+
+const text=event.results[0][0].transcript;
+
+document.getElementById("voiceText").textContent=text;
+
+input.value=text;
+count.textContent=text.length;
+
+try{
+
+const fromLang=document.getElementById("from").value;
+const toLang=document.getElementById("to").value;const answer=await translateText(text,fromLang,toLang);
+
+document.getElementById("voiceResult").textContent=answer;
+
+const speech=new SpeechSynthesisUtterance(answer);
+
+speech.lang=
+toLang==="ru"?"ru-RU":
+toLang==="en"?"en-US":
+"uz-UZ";
+
+speechSynthesis.speak(speech);
+
+}catch(e){
+
+document.getElementById("voiceResult").textContent=
+"Tarjima amalga oshmadi.";
+
+}
+
+};
+
+recognition.onerror=()=>{
+document.getElementById("voiceText").textContent=
+"Mikrofon xatosi.";
+};
+
+recognition.onend=()=>{
+mic.classList.remove("active");
+mic.textContent="🎙️";
+};
+
+recognition.start();
+
+}
+
+
+/* =========================
+   JONLI SUHBAT
+========================= */
+
+function conversation(){
+
+const Recognition=recognitionAPI();
+
+if(!Recognition){
+
+alert("Chrome brauzerida oching.");
+return;
+
+}
+
+const recognition=new Recognition();
+
+const from=document.getElementById("from").value;
+const to=document.getElementById("to").value;
+
+recognition.lang=
+from==="ru"?"ru-RU":
+from==="en"?"en-US":
+"uz-UZ";
+
+recognition.interimResults=false;
+recognition.continuous=false;
+
+document.getElementById("chatText").textContent=
+"🎙️ Gapiring...";
+
+recognition.onresult=async event=>{
+
+const text=event.results[0][0].transcript;
+
+document.getElementById("chatText").textContent=text;
+
+try{
+
+const answer=await translateText(text,from,to);
+
+document.getElementById("chatResult").textContent=answer;
+
+const speech=new SpeechSynthesisUtterance(answer);
+
+speech.lang=
+to==="ru"?"ru-RU":
+to==="en"?"en-US":
+"uz-UZ";
+
+speechSynthesis.speak(speech);
+
+}catch(e){
+
+document.getElementById("chatResult").textContent=
+"Tarjima amalga oshmadi.";
+
+}
+
+};
+
+recognition.start();
+
+}
+
+
+/* =========================
+   TARIX
+========================= */
 
 function saveHistory(original,translated,from,to){
-  try{
-    const history=JSON.parse(localStorage.getItem('muxtorHistory')||'[]');
-    history.unshift({original,translated,from,to,date:new Date().toLocaleString()});
-    localStorage.setItem('muxtorHistory',JSON.stringify(history.slice(0,30)));
-  }catch(e){}
+
+let list=
+JSON.parse(localStorage.getItem("muxtor_history")||"[]");
+
+list.unshift({
+original,
+translated,
+from,
+to,
+date:new Date().toLocaleString()
+});
+
+list=list.slice(0,30);
+
+localStorage.setItem(
+"muxtor_history",
+JSON.stringify(list)
+);
+
 }
 
-function showHistory(){
-  const list=document.getElementById('historyList');
-  let history=[];
-  try{history=JSON.parse(localStorage.getItem('muxtorHistory')||'[]');}
-  catch(e){}
-  if(!history.length){
-    list.innerHTML='<p class="status">Hozircha tarjimalar tarixi yo‘q.</p>';
-    return;
-  }
-  list.innerHTML='';
-  history.forEach(item=>{
-    const div=document.createElement('div');
-    div.className='history-item';
-    const heading=document.createElement('b');
-    heading.textContent=languageNames[item.from]+' → '+languageNames[item.to];
-    const original=document.createElement('p');
-    original.textContent=item.original;
-    const translated=document.createElement('p');
-    translated.textContent=item.translated;
-    const date=document.createElement('small');
-    date.textContent=item.date;
-    div.append(heading,original,translated,date);
-    list.appendChild(div);
-  });
+
+function loadHistory(){
+
+const box=document.getElementById("historyList");
+
+let list=
+JSON.parse(localStorage.getItem("muxtor_history")||"[]");
+
+if(list.length===0){
+
+box.innerHTML=
+'<div class="empty">Tarjima tarixi hozircha bo‘sh.</div>';
+
+return;
+
 }
 
-function clearHistory(){
-  if(confirm('Tarjimalar tarixini o‘chirmoqchimisiz?')){
-    localStorage.removeItem('muxtorHistory');
-    showHistory();
-  }
+box.innerHTML="";
+
+list.forEach(item=>{
+
+const div=document.createElement("div");
+
+div.className="history-item";
+
+div.innerHTML=
+'<div class="original">'+
+escapeHTML(item.original)+
+'</div>'+
+'<br>'+
+escapeHTML(item.translated)+
+'<br><br>'+
+'<small>'+item.date+'</small>';
+
+box.appendChild(div);
+
+});
+
 }
+
+
+function deleteHistory(){
+
+localStorage.removeItem("muxtor_history");
+
+loadHistory();
+
+}
+
+
+function escapeHTML(text){
+
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+loadHistory();
+
 </script>
+
 </body>
 </html>
+<p>O‘zbek, rus va ingliz tillari o‘rtasida tezkor matnli va ovozli tarjima.</p>
+</header>
